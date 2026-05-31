@@ -1,0 +1,11 @@
+pandas
+numpy
+requests
+feedparser
+praw
+python-dotenv
+scikit-learn
+spacy
+streamlit
+schedule
+sqlalchemy
