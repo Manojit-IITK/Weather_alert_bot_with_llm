@@ -139,7 +139,7 @@ if __name__ == "__main__":
         import time
         import schedule
         
-        interval_hours = int(os.getenv("INGEST_INTERVAL_HOURS", "4"))
+        interval_hours = int(os.getenv("INGEST_INTERVAL_HOURS", "24"))
         logger.info(f"Running in scheduler mode. Running pipeline every {interval_hours} hours...")
         # Run immediately first
         run_pipeline()
