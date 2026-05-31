@@ -134,16 +134,17 @@ if __name__ == "__main__":
     # Initialize DB schema
     database.init_db()
     
-    # If run with '--loop', it runs every 10 minutes (or we can use standard scheduler)
+    # If run with '--loop', it runs periodically (configurable via env, default 4 hours)
     if len(sys.argv) > 1 and sys.argv[1] == "--loop":
         import time
         import schedule
         
-        logger.info("Running in scheduler mode. Running pipeline every 10 minutes...")
+        interval_hours = int(os.getenv("INGEST_INTERVAL_HOURS", "4"))
+        logger.info(f"Running in scheduler mode. Running pipeline every {interval_hours} hours...")
         # Run immediately first
         run_pipeline()
         
-        schedule.every(10).minutes.do(run_pipeline)
+        schedule.every(interval_hours).hours.do(run_pipeline)
         
         try:
             while True:
