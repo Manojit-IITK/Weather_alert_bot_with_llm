@@ -11,7 +11,7 @@ def analyze_weather_zones(df, api_key):
         return "⚠️ No weather incident records found in the database to analyze."
 
     # Take the first 30 rows
-    df_top = df.head(30)
+    df_top = df.head(10)
     
     # Format the data for the LLM prompt (only send source, location, and title)
     records_str = []
@@ -38,7 +38,7 @@ def analyze_weather_zones(df, api_key):
         "and classify them into Red and Orange zones based on severity."
     )
     
-    user_prompt = f"""Below are the 30 most recent weather incident reports collected by our monitoring agent:
+    user_prompt = f"""Below are the 10 most recent weather incident reports collected by our monitoring agent:
 
 {incidents_payload}
 
